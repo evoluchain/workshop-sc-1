@@ -8,6 +8,7 @@ require('chai')
 
 contract('MyToken', ([_, creator, recipient, anotherAccount]) => {
   let token;
+  const TOTAL_SUPPLY = new BigNumber((42 * 10 ** 6) * (10 ** 18)); // 42M
   
   beforeEach(async function () {
     token = await MyToken.new({ from: creator });
@@ -29,7 +30,6 @@ contract('MyToken', ([_, creator, recipient, anotherAccount]) => {
   });
 
   it.skip('total supply is 42M tokens', async function () {
-    const TOTAL_SUPPLY = new BigNumber((42 * 10 ** 6) * (10 ** 18)); // 42M
     const totalSupply = await token.totalSupply();
     totalSupply.should.bignumber.equal(TOTAL_SUPPLY);
   });
